@@ -1,0 +1,57 @@
+<%= form_for(@tweet) do |f| %>
+  <% if @tweet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
+
+      <ul>
+      <% @tweet.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :tweet_id %><br>
+    <%= f.text_field :tweet_id %>
+  </div>
+  <div class="field">
+    <%= f.label :in_reply_to_status_id %><br>
+    <%= f.text_field :in_reply_to_status_id %>
+  </div>
+  <div class="field">
+    <%= f.label :in_reply_to_user_id %><br>
+    <%= f.text_field :in_reply_to_user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :timestamp %><br>
+    <%= f.datetime_select :timestamp %>
+  </div>
+  <div class="field">
+    <%= f.label :source %><br>
+    <%= f.text_area :source %>
+  </div>
+  <div class="field">
+    <%= f.label :text %><br>
+    <%= f.text_area :text %>
+  </div>
+  <div class="field">
+    <%= f.label :retweeted_status_id %><br>
+    <%= f.text_field :retweeted_status_id %>
+  </div>
+  <div class="field">
+    <%= f.label :retweeted_status_user_id %><br>
+    <%= f.text_field :retweeted_status_user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :retweeted_status_timestamp %><br>
+    <%= f.datetime_select :retweeted_status_timestamp %>
+  </div>
+  <div class="field">
+    <%= f.label :expanded_urls %><br>
+    <%= f.text_field :expanded_urls %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

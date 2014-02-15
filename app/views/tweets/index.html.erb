@@ -1,0 +1,45 @@
+<h1>Listing tweets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tweet</th>
+      <th>In reply to status</th>
+      <th>In reply to user</th>
+      <th>Timestamp</th>
+      <th>Source</th>
+      <th>Text</th>
+      <th>Retweeted status</th>
+      <th>Retweeted status user</th>
+      <th>Retweeted status timestamp</th>
+      <th>Expanded urls</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tweets.each do |tweet| %>
+      <tr>
+        <td><%= tweet.tweet_id %></td>
+        <td><%= tweet.in_reply_to_status_id %></td>
+        <td><%= tweet.in_reply_to_user_id %></td>
+        <td><%= tweet.timestamp %></td>
+        <td><%= tweet.source %></td>
+        <td><%= tweet.text %></td>
+        <td><%= tweet.retweeted_status_id %></td>
+        <td><%= tweet.retweeted_status_user_id %></td>
+        <td><%= tweet.retweeted_status_timestamp %></td>
+        <td><%= tweet.expanded_urls %></td>
+        <td><%= link_to 'Show', tweet %></td>
+        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
+        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tweet', new_tweet_path %>

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  tweet_id: MyString
+  in_reply_to_status_id: MyString
+  in_reply_to_user_id: MyString
+  timestamp: 2014-02-16 00:15:45
+  source: MyText
+  text: MyText
+  retweeted_status_id: MyString
+  retweeted_status_user_id: MyString
+  retweeted_status_timestamp: 2014-02-16 00:15:45
+  expanded_urls: MyString
+
+two:
+  tweet_id: MyString
+  in_reply_to_status_id: MyString
+  in_reply_to_user_id: MyString
+  timestamp: 2014-02-16 00:15:45
+  source: MyText
+  text: MyText
+  retweeted_status_id: MyString
+  retweeted_status_user_id: MyString
+  retweeted_status_timestamp: 2014-02-16 00:15:45
+  expanded_urls: MyString
