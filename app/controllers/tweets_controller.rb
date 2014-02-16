@@ -1,3 +1,5 @@
+# coding: utf-8
+
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
 
@@ -60,7 +62,24 @@ class TweetsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  # GET /tweets/import_csv_new
+  def import_csv_new
+  end  
 
+  # POST /tweets/import_csv
+  def import_csv
+    respond_to do |format|
+      if Tweet.import_csv(params[:csv_file])
+        format.html { redirect_to tweets_path }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to tweets_path, :notice => "CSVファイルの読み込みに失敗しました。" }
+        format.json { head :no_content }
+      end
+    end
+  end  
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet

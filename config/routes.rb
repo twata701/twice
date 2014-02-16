@@ -1,5 +1,10 @@
 Twice::Application.routes.draw do
-  resources :tweets
+  resources :tweets do
+    collection do
+      get 'import_csv_new'
+      post 'import_csv'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
