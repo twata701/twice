@@ -48,3 +48,8 @@ end
 
 # Pagenation
 gem 'kaminari'
+
+# User Authentication
+gem 'devise'
+gem 'omniauth-twitter'
+

@@ -52,6 +52,11 @@
               <li><%= link_to "Link1", "/path1"  %></li>
               <li><%= link_to "Link2", "/path2"  %></li>
               <li><%= link_to "Link3", "/path3"  %></li>
+              <% if user_signed_in? %>
+                <li><%= link_to "ログアウト", (destroy_user_session_path)  %></li>
+              <% else %>
+                <li><%= link_to "ログイン", (user_omniauth_authorize_path :twitter)  %></li>
+              <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
