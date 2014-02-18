@@ -1,3 +1,22 @@
 // Place all the styles related to the Tweets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.tweets {
+    border-bottom: 1px dotted #ccc;
+    padding: 10px 15px 5px 20px;
+    position: relative;
+
+    .tweet-text {
+        font-size: 108%;
+        color: #444;
+        line-height: 1.4;
+        margin-bottom: 6px;
+        word-wrap: break-word;
+        word-break: break-all; 
+    }
+    
+    .tweet-date {
+        color: #999;
+        font-size: 13px;
+    }
+}
