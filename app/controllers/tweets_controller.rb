@@ -2,6 +2,7 @@
 
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
+  before_action :check_user
 
   # GET /tweets
   # GET /tweets.json
@@ -90,4 +91,12 @@ class TweetsController < ApplicationController
     def tweet_params
       params.require(:tweet).permit(:tweet_id, :in_reply_to_status_id, :in_reply_to_user_id, :timestamp, :source, :text, :retweeted_status_id, :retweeted_status_user_id, :retweeted_status_timestamp, :expanded_urls)
     end
+    
+    # ユーザがログインしていなければ、ホームにリダイレクト
+    def check_user
+      unless user_signed_in?
+        redirect_to :root
+      end
+    end
+    
 end

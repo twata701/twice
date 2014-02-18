@@ -7,7 +7,7 @@ Twice::Application.routes.draw do
   end
   
   devise_for :users, :controllers => { :omniauth_callbacks => 'omniauth_callbacks' }
-  root :to => 'tweets#index'
+  root :to => 'home#index'
 
   devise_scope :user do
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
