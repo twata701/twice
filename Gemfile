@@ -53,3 +53,6 @@ gem 'kaminari'
 gem 'devise'
 gem 'omniauth-twitter'
 
+# manage environment specific
+gem 'rails_config'
+
