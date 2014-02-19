@@ -7,7 +7,8 @@ class TweetsController < ApplicationController
   # GET /tweets
   # GET /tweets.json
   def index
-    @tweets = Tweet.order(:id).page params[:page]
+    @user = current_user
+    @tweets = @user.tweet.order(:id).page params[:page]
   end
 
   # GET /tweets/1
@@ -71,7 +72,7 @@ class TweetsController < ApplicationController
   # POST /tweets/import_csv
   def import_csv
     respond_to do |format|
-      if Tweet.import_csv(params[:csv_file])
+      if Tweet.import_csv(params[:csv_file],current_user)
         format.html { redirect_to tweets_path }
         format.json { head :no_content }
       else

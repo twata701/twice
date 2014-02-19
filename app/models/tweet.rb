@@ -4,12 +4,14 @@ require 'kconv' # 文字コード操作をおこなうライブラリ
 
 class Tweet < ActiveRecord::Base
   
-  def self.import_csv(csv_file)
+  belongs_to :user
+  
+  def self.import_csv(csv_file,user)
     # csvファイルを受け取って文字列にする
     csv_text = csv_file.read
 
     # 読み込む前に古いツイートをすべて削除する。
-    Tweet.delete_all
+    user.tweet.delete_all
 
     #文字列をUTF-8に変換
     CSV.parse(Kconv.toutf8(csv_text)) do |row|
@@ -28,7 +30,8 @@ class Tweet < ActiveRecord::Base
         tweet.retweeted_status_user_id    = row[7]
         tweet.retweeted_status_timestamp  = row[8]
         tweet.expanded_urls         = row[9]
-
+        tweet.user_id = user.id
+        
         tweet.save
 
       end

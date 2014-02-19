@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :trackable, :omniauthable
   
+  has_many :tweet, dependent: :destroy
+  
   def self.find_for_twitter_oauth(auth)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
