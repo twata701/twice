@@ -3,6 +3,7 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
   before_action :check_user
+  before_action :make_archive
 
   # GET /tweets
   # GET /tweets.json
@@ -100,4 +101,12 @@ class TweetsController < ApplicationController
       end
     end
     
+    # ユーザがログインしていなければ、ホームにリダイレクト
+    def make_archive
+      @user = current_user
+      @archives = @user.tweet.group("strftime('%Y%m', tweets.timestamp)")
+                             .order("strftime('%Y%m', tweets.timestamp) desc")
+                             .count
+    end
+
 end
