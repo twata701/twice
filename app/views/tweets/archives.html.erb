@@ -1,0 +1,7 @@
+<h1><%= ymconvn(@yyyymm_now) %>のツイート一覧</h1>
+
+<%= render(@tweets) %>
+<% if @tweets.count == 0 %>
+  <p><%= ymconvn(@yyyymm_now) %> のツイートはありません</p>
+<% end %>
+<%= paginate (@tweets) %>

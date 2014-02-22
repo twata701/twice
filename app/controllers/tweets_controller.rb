@@ -83,6 +83,16 @@ class TweetsController < ApplicationController
     end
   end  
   
+  # GET /tweets/archives/201402
+  def archives
+    @user = current_user
+    @yyyymm_now = params[:yyyymm]
+    @tweets = @user.tweet
+             .where("strftime('%Y%m', tweets.timestamp) = '"+@yyyymm_now+"'")
+             .order(:id)
+             .page params[:page]
+  end  
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet
