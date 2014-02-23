@@ -3,12 +3,12 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
   before_action :check_user
+  before_action :set_user
   before_action :make_archive
 
   # GET /tweets
   # GET /tweets.json
   def index
-    @user = current_user
     @tweets = @user.tweet.order(:id).page params[:page]
   end
 
@@ -85,10 +85,8 @@ class TweetsController < ApplicationController
   
   # GET /tweets/archives/201402
   def archives
-    @user = current_user
-    @yyyymm_now = params[:yyyymm]
     @tweets = @user.tweet
-             .where("strftime('%Y%m', tweets.timestamp) = '"+@yyyymm_now+"'")
+             .where("strftime('%Y%m', tweets.timestamp) = '"+params[:yyyymm]+"'")
              .order(:id)
              .page params[:page]
   end  
@@ -111,12 +109,16 @@ class TweetsController < ApplicationController
       end
     end
     
-    # ユーザがログインしていなければ、ホームにリダイレクト
+    # アーカイブ見出し作成
     def make_archive
-      @user = current_user
       @archives = @user.tweet.group("strftime('%Y%m', tweets.timestamp)")
                              .order("strftime('%Y%m', tweets.timestamp) desc")
                              .count
+    end
+    
+    # インスタンス変数にログイン中のユーザをセット
+    def set_user
+      @user = current_user
     end
 
 end
