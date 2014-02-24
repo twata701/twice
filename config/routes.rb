@@ -3,7 +3,7 @@ Twice::Application.routes.draw do
     collection do
       get 'import_csv_new'
       post 'import_csv'
-      get 'archives'
+      get 'archives/:yyyymm', :action => :archives, :as =>'archives'
     end
   end
   
