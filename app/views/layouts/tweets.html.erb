@@ -68,6 +68,13 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
+              <li class="nav-header">Search</li>
+              <%= form_tag(search_tweets_path, :method => "get") do %>
+                <div class="input-append">
+                  <%= text_field_tag("q", params[:q], :class => "span9") %>
+                  <%= submit_tag "検索", :class => "btn"%>
+                </div>
+              <% end %>
               <li class="nav-header">Archives</li>
               <% @archives.each do |yyyymm, count| %>
               <li><%= link_to ymconv(yyyymm, count.to_s) , archives_tweets_path(:yyyymm => yyyymm)%><li>

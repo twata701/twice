@@ -4,6 +4,7 @@ Twice::Application.routes.draw do
       get 'import_csv_new'
       post 'import_csv'
       get 'archives/:yyyymm', :action => :archives, :as =>'archives'
+      get 'search', :action => :search, :as =>'search'
     end
   end
   

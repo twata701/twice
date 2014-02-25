@@ -1,0 +1,7 @@
+<h1>「<%= params[:q] %>」の検索結果</h1>
+
+<%= render(@tweets) %>
+<% if @tweets.count == 0 %>
+  <p><%= params[:q] %>に一致するツイートはありませんでした。</p>
+<% end %>
+<%= paginate (@tweets) %>

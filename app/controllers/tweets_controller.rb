@@ -91,6 +91,14 @@ class TweetsController < ApplicationController
              .page params[:page]
   end  
   
+  # GET /tweets/search/keyword
+  def search
+    @tweets = @user.tweet
+             .search(:text_cont => params[:q]).result
+             .order(:id)
+             .page params[:page]
+  end  
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet
