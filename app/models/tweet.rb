@@ -17,7 +17,7 @@ class Tweet < ActiveRecord::Base
     CSV.parse(Kconv.toutf8(csv_text)) do |row|
 
       # ヘッダー行を回避するためにtweet_idが数値でない場合は読み飛ばす
-      if row[0] =~ /\d+/
+      if row[0] =~ /\A\d+\z/
         tweet = Tweet.new
 
         tweet.tweet_id              = row[0]
